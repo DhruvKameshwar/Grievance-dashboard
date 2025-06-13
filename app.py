@@ -64,11 +64,11 @@ if selected_history_file:
             df.dropna(subset=['Pending_Days'], inplace=True)
             df['Pending_Days'] = df['Pending_Days'].astype(int)
 
-            pending_over_10 = df[df['pending_days'] > 10].shape[0]
+            Pending_over_10 = df[df['Pending_Days'] > 10].shape[0]
             max_pending = df['Pending_Days'].max()
             
-            col2.metric("Pending > 10 days", pending_over_10)
-            col3.metric("Max Pending Days", max_pending)
+            col2.metric("Pending > 10 days", Pending_over_10)
+            col3.metric("Max Pending Days", max_Pending)
         else:
             col2.metric("Pending > 10 days", "N/A")
             col3.metric("Max Pending Days", "N/A")
