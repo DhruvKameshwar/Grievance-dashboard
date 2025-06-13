@@ -39,8 +39,8 @@ if selected_history_file:
 
         # 1. Make the 'pending_days' column robustly numeric.
         #    'errors='coerce'' will turn any non-numeric values into Not a Number (NaN).
-        if 'pending_days' in df.columns:
-            df['pending_days'] = pd.to_numeric(df['pending_days'], errors='coerce')
+        if 'Pending_Days' in df.columns:
+            df['Pending_Days'] = pd.to_numeric(df['Pending_Days'], errors='coerce')
 
         # 2. Convert all remaining object columns to strings to prevent serialization errors.
         #    This is the primary fix for the ArrowTypeError.
@@ -59,13 +59,13 @@ if selected_history_file:
 
         col1.metric("Total Grievances", len(df))
 
-        if 'pending_days' in df.columns:
+        if 'Pending_Days' in df.columns:
             # Drop rows where 'pending_days' could not be converted to a number
-            df.dropna(subset=['pending_days'], inplace=True)
-            df['pending_days'] = df['pending_days'].astype(int)
+            df.dropna(subset=['Pending_Days'], inplace=True)
+            df['Pending_Days'] = df['Pending_Days'].astype(int)
 
             pending_over_10 = df[df['pending_days'] > 10].shape[0]
-            max_pending = df['pending_days'].max()
+            max_pending = df['Pending_Days'].max()
             
             col2.metric("Pending > 10 days", pending_over_10)
             col3.metric("Max Pending Days", max_pending)
